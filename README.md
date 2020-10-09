@@ -1,8 +1,8 @@
-# !!!Replace with your unique project name!!!
+# Color blindness readability
 
 ## Description
 
-This program prompts the user for integer values to be used as RGB color combinations for three different colors. Since RGB values cannot be less than 0 or greater than 255 the program will repeat if invalid intergers are entered. Additionally, the program uses the weighted average method to produce the grayscale version of the three inputed colors. Then, the program saves the inputed RGB colors and the grayscale colors to a file of the users choice.
+This program prompts the user for integer values to be used as RGB color combinations for three different colors. Since RGB values cannot be less than 0 or greater than 255 the program will repeat if invalid intergers are entered. Additionally, the program uses the weighted average method to produce the grayscale version of the three inputed colors. Then, the program saves the inputed RGB colors and the grayscale colors to a file of the users choice. These conversion will then be used at a later time to check for colorblindness readability.
 
 ## Developer
 
@@ -58,22 +58,23 @@ Thank you for inputing colors. At a later time we will report the colorblindness
 
 ### Variables and Data Types
 
-Integer variables were used to store the users inputted choices for RGB color values. Integer varaibles were the best choice because RGB values need to be whole numbers. 
+Integer variables were used to store the users inputted choices for RGB color values. Integer varaibles were the best choice because RGB values need to be whole numbers. Additional integer variables were declared for the grayscale RGB values, due to the same reasoning as above.
 A string variable was declared in order to store the users inputed filename of choice. A string was appropriate because the filename could contain multiple charcters and be of different lengths.
 An fstream variable was declared in order to open and write to a file. 
 
 ### Input and Output
 
-In order 
+In order to prompt the user to enter the desired input a cout is used to do so. To capture this desired statement a cin statement is used. Cin is sufficient since the only input needed at this stage are integers. Hence we don't need to use getline() to ignore potential whitespace. Additional cout statements were used to print out the RGB and grayscale colors to the user. Cout was chosen because we wanted the user to see their choices while using the program. Cout statements were also used to prompt the user to enter a filename, and cin statements were used to capture the filename. Again, the filename is not expected to have whitespace, so cin is sufficient. 
 
 ### Decisions
 
-!!!Replace with a summary and examples of how multiple decision constructs have been used effectively and appropriately!!!
+If statements were used to indicate to the user they entered an invalid RGB value. Only one condition was desired to be tested, so we used an if statement. A follow up statement(s) was/were not used so there was no need for else if and/or else decisions. 
 
 ### Iteration
 
-!!!Replace with a summary and examples of how iteration has been used effectively and appropriately!!!
+A do-while loop was used to repeat the request for RGB values if an invalid value was entered. A do while loop is the most desirable because the code inside the loop needs to be executed at least once.
+
 
 ### File Input and Output
 
-!!!Replace with a summary and examples of how input and/or output of files have been used effectively and appropriately!!!
+In addition to couting the RGB and grayscale choices, the user chooses a file to write the choices too. Since we are writting to a file, the file is opened using ios::app---why app vs write 
