@@ -2,7 +2,7 @@
 
 ## Description
 
-This program prompts the user for integer values to be used as RGB color combinations for three different colors. Since RGB values cannot be less than 0 or greater than 255 the program will repeat if invalid intergers are entered. Additionally, the program uses the weighted average method to produce the grayscale version of the three inputed colors. Then, the program saves the inputed RGB colors and the grayscale colors to a file of the users choice. These conversion will then be used at a later time to check for colorblindness readability.
+This program prompts the user for integer values to be used as RGB color combinations for three different colors. Since RGB values cannot be less than 0 or greater than 255 the program will repeat if invalid intergers are entered. Additionally, the program uses the weighted average method to produce the grayscale version of the three inputed colors. Then, the program saves the inputed RGB colors and the grayscale colors to a file of the users choice. These conversion will be used at a later time to check for colorblindness readability.
 
 ## Developer
 
@@ -77,4 +77,4 @@ A do-while loop was used to repeat the request for RGB values if an invalid valu
 
 ### File Input and Output
 
-In addition to couting the RGB and grayscale choices, the user chooses a file to write the choices too. Since we are writting to a file, the file is opened using ios::app---why app vs write 
+In addition to couting the RGB and grayscale choices, the user chooses a file to write the choices too. Since we are writting to a file, the file is opened using ios::app. Append was chosen over ios:writte so we can continue to add to the file without writting over the previous entries.
