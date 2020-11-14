@@ -1,116 +1,139 @@
 #include <iostream>
 #include <fstream>
-
+#include <vector>
 using namespace std;
-
+void displayRGB( const vector <int> &);
+void displayGeneralColors(const vector <string> & colors);
+char addColor();
+char chooseRGBorGeneral();
+vector <int> getRGB();
+string getGeneralColors();
+void CalcGrayscaleRGB(vector <int>, vector <int> &);
 int main()
-{
-  // given three rgb values to check for colorblindness viewability 
-  int red1, red2, red3;
-  int green1, green2, green3;
-  int blue1, blue2, blue3;
+{ 
   string filename;
   fstream filewriter;
-  cout<< "You will be prompted to pick the hue of red, green and blue for three different colors. The grayscale of these colors will then be calculated to check for colorblindness readability."<<endl;
-  cout<<"For your first color:"<<endl;
-  do
+  char choice;
+  char choice2;
+  char colorType;
+  char colorType1;
+  char colorType2;
+  vector <int> RGB1;
+  vector <int> Gray1;
+  vector <int> RGB2;
+  vector <int> Gray2;
+  vector <int> RGB3;
+  vector <int> Gray3;
+  vector <string> generalColors1;
+  cout<< "You will be prompted to pick the hue of red, green and blue for any number of colors or pick a general color from a list.\n The grayscale of the colors chosen via RGB values will then be \n calculated to check for colorblindness readability."<<endl;
+  colorType = chooseRGBorGeneral();
+  if(colorType == 'r' || colorType == 'R')
   {
-  cout<< "Please give a value between 0-255 for the intensity of red."<<endl;
-  cin>>red1;
-  if(red1 < 0 | red1 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+   RGB1 = getRGB();
   }
-  } while (red1 < 0 | red1 > 255 );
-  do
-  { 
-   cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
-  cin>>blue1;
-  if( green1 < 0 | green1 > 255)
+  else
   {
-    cout << "Invalid RGB value." <<endl;
+   generalColors1.push_back(getGeneralColors());
   }
-  } while(green1 < 0 | green1 >255);
-  do
+  choice = addColor();
+  if(choice == 'a' | choice == 'A')
   {
-  cout<< "Please give a value between 0-255 for the intensity of blue."<<endl;
-  cin>>blue1;
-  if(blue1 < 0 | blue1 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+    colorType1 = chooseRGBorGeneral();
   }
-  } while(blue1 < 0 | blue1 > 255);
-
-cout<<"For your second color:"<<endl;
-  do
+  else if(choice == 'q' | choice == 'Q')
   {
-  cout<< "Please give a value between 0-255 for the intensity of red."<<endl;
-  cin>>red2;
-  if(red2 < 0 | red2 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+    if(RGB1.size() >0)
+    {
+    displayRGB(RGB1);
+    }
   }
-  } while (red2 < 0 | red2 > 255 );
-  do
-  { 
-   cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
-  cin>>green2;
-  if( green2 < 0 | green2 > 255)
+  if(colorType1 == 'r' | colorType1 =='R')
   {
-    cout << "Invalid RGB value." <<endl;
+    RGB2 = getRGB();
   }
-  } while(green2 < 0 | green2 >255);
-  do
+  else if(colorType1 == 'g' | colorType1 == 'G')
   {
-  cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
-  cin>>blue2;
-  if(blue2 < 0 | blue2 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+    generalColors1.push_back(getGeneralColors());
   }
-  } while(blue2 < 0 | blue2 > 255);
-
-  cout<<"For your third color:"<<endl;
-  do
+  cout<< "You have one more option to add another color."<<endl;
+  choice2 = addColor();
+  if(choice2 == 'a'| choice2 == 'A')
   {
-  cout<< "Please give a value between 0-255 for the intensity of red."<<endl;
-  cin>>red3;
-  if(red3 < 0 | red3 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+    colorType2 = chooseRGBorGeneral();
   }
-  } while (red3 < 0 | red3 > 255 );
-  do
-  { 
-   cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
-  cin>>green3;
-  if( green3 < 0 | green3 > 255)
+  else if ( choice2 == 'q'| choice2 == 'Q')
   {
-    cout << "Invalid RGB value." <<endl;
+  if(RGB1.size()>0)
+  {
+  displayRGB(RGB1);
   }
-  } while(green3 < 0 | green3 >255);
-  do
+  if(RGB2.size()>0)
   {
-  cout<< "Please give a value between 0-255 for the intensity of blue."<<endl;
-  cin>>blue3;
-  if(blue3 < 0 | blue3 > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+  displayRGB(RGB2);
   }
-  } while(blue3 < 0 | blue3 > 255);
-  
-  cout<< "The first color is :rgb("<< red1<< "," <<green1 <<","<< blue1<< ")"<<endl;
-  cout<< "The second color is :rgb("<< red2<< "," <<green2 <<","<< blue2<< ")"<<endl;
-  cout<< "The third color is : rgb("<< red3<< "," <<green3 <<","<< blue3<< ")"<<endl;
-  int gray1 = .3 *red1 + .59*green1 + .11*blue1;
-  int gray2 = .3 *red2 + .59*green2 + .11*blue2;
-  int gray3 = .3 *red3 + .59*green3 + .11*blue3;
-  cout<<"The first grayscale color is: rgb("<<gray1<<","<<gray1<<","<<gray1<<")"<<endl;
-  cout<<"The second grayscale color is: rgb("<<gray2<<","<<gray2<<","<<gray2<<")"<<endl;
-  cout<<"The third grayscale color is: rgb("<<gray3<<","<< gray3<<","<<gray3<<")"<<endl;
-  cout<<"What file would you like to save these colors to?"<<endl;
-  do
+  if(generalColors1.size()>0)
   {
+  displayGeneralColors(generalColors1);
+  }
+  }
+  if(colorType2 == 'r' | colorType2 == 'R')
+  {
+    RGB3 = getRGB();
+  }
+  else if(colorType2 == 'g' | colorType2 == 'G')
+  {
+    generalColors1.push_back(getGeneralColors());
+  }
+  //calc grayscale 
+  if(RGB1.size()>0)
+  {
+  CalcGrayscaleRGB(RGB1,Gray1);
+  }
+  if(RGB2.size()>0)
+  {
+  CalcGrayscaleRGB( RGB2, Gray2);
+  }
+  if(RGB3.size()>0)
+  {
+  CalcGrayscaleRGB(RGB3, Gray3);
+  }
+  if(RGB1.size()> 0 | RGB2.size()>0 | RGB3.size()>0)
+  {
+  cout<< "The RGB color(s) chosen is/are:"<<endl;
+  }
+  {
+  if(RGB1.size()>0)
+  {
+  displayRGB(RGB1);
+  }
+  if(RGB2.size()>0)
+  {
+  displayRGB(RGB2);
+  }
+  if(Gray1.size()> 0 | Gray2.size()>0 | Gray3.size()>0)
+  {
+  cout<< "The grayscale RGB color(s) is/are:"<<endl;
+  }
+  if(Gray1.size()> 0)
+  {
+  displayRGB(Gray1);
+  }
+  if(Gray2.size()>0)
+  {
+  displayRGB(Gray2);
+  }
+  if(Gray3.size()>0)
+  {
+    displayRGB(Gray3);
+  }
+  if(generalColors1.size()>0)
+  {
+    cout << "The general color(s) is/ are:"<<endl;
+    displayGeneralColors(generalColors1);
+  }
+   do
+  {
+   cout<<"What file would you like to save these colors to?"<<endl;
   cin>>filename;
 
   filewriter.open(filename, ios::app);
@@ -120,20 +143,132 @@ cout<<"For your second color:"<<endl;
     cout<<"Error opening file.";
   }
   }while(!filewriter.is_open());
-
-  filewriter<<"The first color is :rgb("<< red1<< "," <<green1 <<","<< blue1<< ")"<<endl;
-  filewriter<<"The second color is :rgb("<< red2<< "," <<green2 <<","<< blue2<< ")"<<endl;
-  filewriter<< "The third color is :rgb("<< red3<< "," <<green3 <<","<< blue3<< ")"<<endl; 
-   filewriter<<"The first grayscale color is: rgb("<<gray1<<","<<gray1<<","<<gray1<<")"<<endl;
-  filewriter<<"The second grayscale color is: rgb("<<gray2<<","<<gray2<<","<<gray2<<")"<<endl;
-  filewriter<<"The third grayscale color is: rgb("<<gray3<<","<< gray3<<","<<gray3<<")"<<endl;
- 
-
-  cout<< "Thank you for inputing your color choices. At a later time we will report the colorblindness readability.";
+  if(RGB1.size()> 0)
+  {
+  filewriter << "The first RGB color is: ("<< RGB1[0] << ","<< RGB1[1]<<","<< RGB1[2]<<")"<<endl;
+  }
+  if(RGB2.size()> 0)
+  {
+  filewriter << "The second RGB color is (" << RGB2[0]<< ","<< RGB2[1] <<"," << RGB2[2]<<")"<<endl;
+  }
+  if(RGB3.size()>0)
+  {
+  filewriter<< "The third RGB color is (" << RGB3[0] << ","<< RGB3[1] << "," << RGB3[2]<<")"<<endl;
+  }
+   cout<< "Thank you for inputing your color choices. At a later time we will report the colorblindness readability.";
  
  filewriter.close();
-
-
-   
   return 0;
+}
+}
+void displayGeneralColors(const vector <string> &colors)
+{
+  for(int i = 0; i < colors.size(); i++)
+  {
+    cout<< colors[i]<< ",";
+  }
+  cout<< endl;
+}
+void displayRGB( const vector <int> & RGB)
+{
+   for(int i = 0; i < RGB.size(); i++)
+    {
+    cout<< RGB[i]<< ",";
+    }
+    cout<<endl;
+}
+
+char addColor()
+{ 
+  char choice;
+  do
+  {
+  cout<< "Please enter (a) to add another color or (q) to quit" <<endl; 
+  cin>>choice; 
+  }while(choice != 'q' && choice != 'q' && choice != 'a' && choice != 'A');
+  return choice;
+}
+char chooseRGBorGeneral()
+{
+  char colorType;
+  do
+  {
+  cout<< "Would you like to enter (R)GB values or a (g)eneral color?"<<endl;
+  cin>> colorType;
+  cin.ignore();
+  }while(colorType != 'R' && colorType != 'r' && colorType != 'g' && colorType != 'G');
+  return colorType;
+}
+vector <int> getRGB()
+{
+  vector <int> RGB;
+  int red;
+  int green;
+  int blue;
+  do
+  {
+  cout<< "Please give a value between 0-255 for the intensity of red."<<endl;
+  cin>>red;
+  if(red < 0 | red > 255)
+  {
+    cout << "Invalid RGB value." <<endl;
+  }
+  }while(red < 0 | red > 255);
+  RGB.push_back(red);
+  do
+  {
+  cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
+  cin>>green;
+  if( green < 0 | green > 255)
+  {
+  cout << "Invalid RGB value." <<endl;
+  }
+  }while(green < 0 | green > 255);
+  RGB.push_back(green);
+  do
+  {
+  cout<< "Please give a value between 0-255 for the intensity of blue."<<endl;
+  cin>>blue;
+  if(blue < 0 | blue > 255)
+  {
+    cout << "Invalid RGB value." <<endl;
+  } 
+  }while(blue < 0 | blue > 255);
+  RGB.push_back(blue);
+  return RGB;
+}
+
+string getGeneralColors()
+{
+  char colorchoice;
+  do
+  {
+  cout<<"Please choose a general color: (r)ed, (g)reen, or (b)lue?"<< endl;
+  cin>> colorchoice;
+  }while(colorchoice != 'r' && colorchoice != 'R' && colorchoice != 'g' && colorchoice != 'G' && colorchoice != 'b' && colorchoice != 'B');
+  if(colorchoice == 'r' || colorchoice == 'R')
+  {
+    string red = "red";
+    return red;
+  }
+  else if(colorchoice == 'g' || colorchoice == 'G')
+  {
+    string green = "green";
+    return green;
+  }
+  else
+  {
+    string blue = "blue";
+    return blue;
+  }
+}
+//function to calc grayscale for RGB
+void CalcGrayscaleRGB(vector <int> RGB, vector <int>& grayscale)
+{
+  int gray1 = .3 * RGB[0];
+  grayscale.push_back(gray1);
+  int gray2 = .59 * RGB[1];
+  grayscale.push_back(gray2);
+  int gray3 = .11 * RGB[2];
+  grayscale.push_back(gray3);
 }
