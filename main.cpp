@@ -134,6 +134,8 @@ int main()
   return 0;
 }
 }
+// Function Definitions
+// Function to display vector of general colors
 void displayGeneralColors(const vector <string> &colors)
 {
   for(int i = 0; i < colors.size(); i++)
@@ -142,6 +144,7 @@ void displayGeneralColors(const vector <string> &colors)
   }
   cout<< endl;
 }
+// Function to display vector of RGB values
 void displayRGB( const vector <int> & RGB)
 {
    for(int i = 0; i < RGB.size(); i++)
@@ -150,7 +153,7 @@ void displayRGB( const vector <int> & RGB)
     }
     cout<<endl;
 }
-
+// Function allowing user to add color or quit the program
 char addColor()
 { 
   char choice;
@@ -161,6 +164,7 @@ char addColor()
   }while(choice != 'q' && choice != 'q' && choice != 'a' && choice != 'A');
   return choice;
 }
+// Function allowing user to choose a general color or RGB values
 char chooseRGBorGeneral()
 {
   char colorType;
@@ -172,6 +176,7 @@ char chooseRGBorGeneral()
   }while(colorType != 'R' && colorType != 'r' && colorType != 'g' && colorType != 'G');
   return colorType;
 }
+// Function gathering user input for RGB values 
 vector <int> getRGB()
 {
   vector <int> RGB;
@@ -210,7 +215,7 @@ vector <int> getRGB()
   RGB.push_back(blue);
   return RGB;
 }
-
+// Function gathering users general color choice
 string getGeneralColors()
 {
   char colorchoice;
@@ -235,7 +240,7 @@ string getGeneralColors()
     return blue;
   }
 }
-//function to calc grayscale for RGB
+//Function to calc grayscale for RGB
 void CalcGrayscaleRGB(vector <int> RGB, vector <int>& grayscale)
 {
   int gray1 = .3 * RGB[0];
@@ -245,7 +250,7 @@ void CalcGrayscaleRGB(vector <int> RGB, vector <int>& grayscale)
   int gray3 = .11 * RGB[2];
   grayscale.push_back(gray3);
 }
-
+// Function that writes RGB vectors to user's choice of file
 void fileWriter(const vector <int> & RGB1,const vector <int> & RGB2 ,const vector <int> & RGB3, const vector <int> & Gray1, const vector <int> & Gray2, const vector <int> & Gray3)
 {
   string filename;
