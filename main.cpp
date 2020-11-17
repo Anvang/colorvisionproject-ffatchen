@@ -9,10 +9,9 @@ char chooseRGBorGeneral();
 vector <int> getRGB();
 string getGeneralColors();
 void CalcGrayscaleRGB(vector <int>, vector <int> &);
+void fileWriter(const vector <int> &,const vector <int> &,const vector <int> &, const vector <int> &, const vector <int> &, const vector <int> &);
 int main()
 { 
-  string filename;
-  fstream filewriter;
   char choice;
   char choice2;
   char colorType;
@@ -131,33 +130,7 @@ int main()
     cout << "The general color(s) is/ are:"<<endl;
     displayGeneralColors(generalColors1);
   }
-   do
-  {
-   cout<<"What file would you like to save these colors to?"<<endl;
-  cin>>filename;
-
-  filewriter.open(filename, ios::app);
-
-  if( !filewriter.is_open())
-  {
-    cout<<"Error opening file.";
-  }
-  }while(!filewriter.is_open());
-  if(RGB1.size()> 0)
-  {
-  filewriter << "The first RGB color is: ("<< RGB1[0] << ","<< RGB1[1]<<","<< RGB1[2]<<")"<<endl;
-  }
-  if(RGB2.size()> 0)
-  {
-  filewriter << "The second RGB color is (" << RGB2[0]<< ","<< RGB2[1] <<"," << RGB2[2]<<")"<<endl;
-  }
-  if(RGB3.size()>0)
-  {
-  filewriter<< "The third RGB color is (" << RGB3[0] << ","<< RGB3[1] << "," << RGB3[2]<<")"<<endl;
-  }
-   cout<< "Thank you for inputing your color choices. At a later time we will report the colorblindness readability.";
- 
- filewriter.close();
+  fileWriter(RGB1, RGB2, RGB3, Gray1, Gray2, Gray3);
   return 0;
 }
 }
@@ -271,4 +244,37 @@ void CalcGrayscaleRGB(vector <int> RGB, vector <int>& grayscale)
   grayscale.push_back(gray2);
   int gray3 = .11 * RGB[2];
   grayscale.push_back(gray3);
+}
+
+void fileWriter(const vector <int> & RGB1,const vector <int> & RGB2 ,const vector <int> & RGB3, const vector <int> & Gray1, const vector <int> & Gray2, const vector <int> & Gray3)
+{
+  string filename;
+  fstream filewriter;
+ do
+  {
+   cout<<"What file would you like to save these colors to?"<<endl;
+  cin>>filename;
+
+  filewriter.open(filename, ios::app);
+
+  if( !filewriter.is_open())
+  {
+    cout<<"Error opening file.";
+  }
+  }while(!filewriter.is_open());
+  if(RGB1.size()> 0)
+  {
+  filewriter << "The first RGB color is: ("<< RGB1[0] << ","<< RGB1[1]<<","<< RGB1[2]<<")"<<endl;
+  }
+  if(RGB2.size()> 0)
+  {
+  filewriter << "The second RGB color is (" << RGB2[0]<< ","<< RGB2[1] <<"," << RGB2[2]<<")"<<endl;
+  }
+  if(RGB3.size()>0)
+  {
+  filewriter<< "The third RGB color is (" << RGB3[0] << ","<< RGB3[1] << "," << RGB3[2]<<")"<<endl;
+  }
+   cout<< "Thank you for inputing your color choices. At a later time we will report the colorblindness readability.";
+ 
+ filewriter.close();
 }
