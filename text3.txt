@@ -1,7 +1,0 @@
-The first color is :rgb(7,0,9)
-The second color is :rgb(10,8,9)
-The third color is :rgb(9,55,45)
-The first grayscale color is: rgb(3,3,3)
-The second grayscale color is: rgb(8,8,8)
-The third grayscale color is: rgb(40,40,40)
-The second RGB color is (5,5,5)
