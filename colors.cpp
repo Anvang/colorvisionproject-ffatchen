@@ -22,46 +22,31 @@ vector<int> colors::givingDefaultRGB()
   defaultRGB = defaultRGBColor;
   return defaultRGB;
 }
-// Getting RGB values from user
-vector <int> colors:: getRGB()
+bool colors::isUserRGBValid(vector <int> input)
 {
-  vector <int> RGB;
-  int red;
-  int green;
-  int blue;
-  do
+  bool isValid;
+  if(input[0]>= 0 && input[0]<= 255)
   {
-  cout<< "Please give a value between 0-255 for the intensity of red."<<endl;
-  cin>>red;
-  if(red < 0 | red > 255)
-  {
-    cout << "Invalid RGB value." <<endl;
+    cout << "The first RGB value is valid"<<endl;
+    isValid = true;
   }
-  }while(red < 0 | red > 255);
-  RGB.push_back(red);
-  do
+  if(input[1]>= 0 && input[1]<= 255)
   {
-  cout<< "Please give a value between 0-255 for the intensity of green."<<endl;
-  cin>>green;
-  if( green < 0 | green > 255)
-  {
-  cout << "Invalid RGB value." <<endl;
+    cout<< "The second RGB value is valid"<<endl;
+    isValid = true;
   }
-  }while(green < 0 | green > 255);
-  RGB.push_back(green);
-  do
+  if(input[2]>= 0 && input[2]<= 255)
   {
-  cout<< "Please give a value between 0-255 for the intensity of blue."<<endl;
-  cin>>blue;
-  if(blue < 0 | blue > 255)
+    cout<< "The third RGB value is valid"<<endl;
+    isValid = true;
+  }
+  if(input[0]< 0 || input[0]>255 || input[1] < 0 || input[1] > 255 || input[2]< 0 || input[2]> 255)
   {
-    cout << "Invalid RGB value." <<endl;
-  } 
-  }while(blue < 0 | blue > 255);
-  RGB.push_back(blue);
-  return RGB;
+    cout<< "At least one RGB entry is invalid"<<endl;
+    isValid = false;
+  }
+  return isValid;
 }
-
 //Setting the class RGB vector as the user's input
 void colors::setRGB(const vector <int> & input)
 {
@@ -97,6 +82,7 @@ void colors::strongestColor()
 //To calculate the weighted grayscale for user's RGB values
 vector <int> colors::CalcGrayscaleRGB()
 {
+  GrayscaleRGB.pop_back();
   vector <int> GrayscaleToReturn;
   int gray1 = .3 * RGB[0];
   GrayscaleRGB.push_back(gray1);
@@ -104,8 +90,7 @@ vector <int> colors::CalcGrayscaleRGB()
   GrayscaleRGB.push_back(gray2);
   int gray3 = .11 * RGB[2];
   GrayscaleRGB.push_back(gray3);
-  GrayscaleToReturn = GrayscaleRGB;
-  return GrayscaleToReturn;
+  return GrayscaleRGB;
 }
 
 //Displaying RGB values and Grayscale values 
@@ -119,16 +104,12 @@ if(RGB.size()> 1)
     cout<< RGB[i]<< ",";
     }
   cout<<endl;
-  if(GrayscaleRGB.size()>1)
-  {
   cout<< " The grayscale RGB values are:"<<endl;
   for(int i = 0; i<GrayscaleRGB.size();i++ )
   {
     cout<<GrayscaleRGB[i]<<",";
   }
-  }
   cout<<endl;
 }
 }
-
 

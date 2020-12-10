@@ -18,16 +18,14 @@ public:
   colors();
 
   vector<int> givingDefaultRGB();
-  
-  vector <int> getRGB();
+
+  bool isUserRGBValid(vector <int>);
   
   void setRGB(const vector <int> &); 
 
   void strongestColor();
 
   vector <int> CalcGrayscaleRGB();
-
-  void setGrayScaleRGB(const vector <int> &);
 
   void displayRGB();
 };
