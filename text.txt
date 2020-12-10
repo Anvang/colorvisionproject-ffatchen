@@ -1,0 +1,8 @@
+Your RGB color is: (5,7,20)
+The weighted grayscale of this color is (1,4,2)
+Your RGB color is: (20,15,17)
+The weighted grayscale of this color is (6,8,1)
+Your RGB color is: (6,7,8)
+The weighted grayscale of this color is (1,4,0)
+Your RGB color is: (56,79,67)
+The weighted grayscale of this color is (16,46,7)

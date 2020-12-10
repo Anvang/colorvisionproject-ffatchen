@@ -69,7 +69,7 @@ int main()
   {
   fileWriter(inputRGB, GrayRGB);
   }
-  
+  cout<<"Thank you for inputing your color choices. At a later time we will report the colorblindness readability."<<endl;
   return 0;
 }
 
